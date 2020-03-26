@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud NodeJs MongoDB</title>
+
+    <!-- Bootstrap 4 CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+    <!-- muestra en consola toda la busqueda en DB -->
+    <!-- <pre>
+        <%= tasks %>
+    </pre> -->
+
+    <nav class="navbar nabvar-dark bg-dark mb-4">
+        <a href="/"> Crud Node MongoDB</a>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- form -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" method="POST">
+                            <div class="form-group">
+                                <input type="text" name ="title" placeholder="Insert Title here" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea name ="description" cols="80" class="form-control" placeholder="Insert description"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>N°</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i = 0; i < tasks.length; i++ ) { %>
+                            <!-- <p> <%= tasks[i] %> </p> -->
+                            <tr>
+                                <th> <%= i+1 %> </th>
+                                <th> <%= tasks[i].title %> </th>
+                                <th> <%= tasks[i].description %> </th>
+                                <th> 
+                                    <a href="/turn/<%= tasks[i]._id %>" class="btn  <%= tasks[i].status ? 'btn-success' : 'btn btn-dark'%>"</a>Done!</a>
+                                    <a href="/delete/<%= tasks[i]._id %>" class="btn btn-danger">Delete</a>
+                                    <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">Edit</a>
+                                </th>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
